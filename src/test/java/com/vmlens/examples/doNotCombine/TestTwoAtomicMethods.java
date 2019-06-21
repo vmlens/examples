@@ -1,18 +1,16 @@
-package com.vmlens.examples.concurrentHashMap;
+package com.vmlens.examples.doNotCombine;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
+
 
 import org.junit.After;
 import org.junit.Test;
 
 import com.vmlens.annotation.Interleave;
 
-public class TestUpdateWrong {
+public class TestTwoAtomicMethods {
 	private final ConcurrentHashMap<Integer,Integer>  map = new  ConcurrentHashMap<Integer,Integer>();
 	@Interleave
 	public void update()  {
@@ -26,11 +24,13 @@ public class TestUpdateWrong {
 	}
 	@Test
 	public void testUpdate() throws InterruptedException	{
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		executor.execute( () -> { update();   }  );
-		executor.execute( () -> { update();   }  );
-		executor.shutdown();
-		executor.awaitTermination(10, TimeUnit.MINUTES);
+		Thread first  = new Thread( () -> { update();   }  );
+		Thread second = new Thread( () -> { update();   }  );
+		first.start();
+		second.start();
+		first.join();
+		second.join();
+		
 	}	
 	@After
 	public void checkResult() {

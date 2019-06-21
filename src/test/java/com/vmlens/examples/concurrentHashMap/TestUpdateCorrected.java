@@ -14,14 +14,13 @@ import com.vmlens.annotation.Interleave;
 
 public class TestUpdateCorrected {
 	private final ConcurrentHashMap<Integer, Integer> map = new ConcurrentHashMap<Integer, Integer>();
-	@Interleave(group = TestUpdateCorrected.class, threadCount = 2)
+	@Interleave
 	public void update() {
 			map.compute(1, (key, value) -> {
 				if (value == null) {
 					return 1;
-				} else {
-					return value + 1;
-				}
+				} 
+				return value + 1;
 			});
 	}
 	@Test
