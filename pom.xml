@@ -10,6 +10,14 @@
   <name>examples</name>
   <url>http://maven.apache.org</url>
 
+ <pluginRepositories>
+  <pluginRepository>
+    <id>vmlens</id>
+    <url>http://vmlens.com/download</url>
+  </pluginRepository>
+</pluginRepositories>
+
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
@@ -55,10 +63,24 @@
  </pluginManagement>
  
   <plugins>
+  			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<configuration>
+					<includes>
+						<include>none</include>
+					</includes>
+				</configuration>
+			</plugin>
+  
+  
+  
+  
  	<plugin>
 				<groupId>com.vmlens</groupId>
 				<artifactId>interleave</artifactId>
-				<version>1.0.3</version>
+				<version>1.0.4</version>
 
 				<!-- start regression test -->
 
@@ -67,7 +89,7 @@
 					<trimStackTrace>false</trimStackTrace>
 				
 					<includes>
-						<include>com.vmlens.examples.doNotCombine.TestCounter</include>
+						<include>com.vmlens.examples.concurrentHashMap.TestUpdateWrong</include>
 					</includes>
 				
 
