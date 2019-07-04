@@ -89,7 +89,7 @@
 					<trimStackTrace>false</trimStackTrace>
 				
 					<includes>
-						<include>com.vmlens.examples.concurrentHashMap.TestUpdateWrong</include>
+						<include>none</include>
 					</includes>
 				
 
@@ -101,6 +101,46 @@
 							<goal>test</goal>
 						</goals>
 					</execution>
+					
+					
+				 	<execution>
+						<id>concurrentHashMap.TestUpdateWrong</id>
+						<configuration>
+							<includes>
+								<include>com.vmlens.examples.concurrentHashMap.TestUpdateWrong</include>
+							</includes>
+
+						</configuration>
+					</execution>
+					
+					
+					<execution>
+						<id>counter.TestCounterIncorrect</id>
+						<configuration>
+							<includes>
+								<include>com.vmlens.examples.counter.TestCounterIncorrect</include>
+							</includes>
+
+						</configuration>
+					</execution>
+					
+					
+					<execution>
+						<id>counter.TestCounterSynchronized</id>
+						<configuration>
+							<includes>
+								<include>com.vmlens.examples.counter.TestCounterSynchronized</include>
+							</includes>
+
+						</configuration>
+					</execution>
+					
+					
+					
+					
+					
+					
+					
 				</executions>
 				
 				
