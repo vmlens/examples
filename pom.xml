@@ -89,7 +89,7 @@
 					<trimStackTrace>false</trimStackTrace>
 				
 					<includes>
-						<include>none</include>
+						<include>com.vmlens.examples.doNotCombine.TestTwoAtomicMethods</include>
 					</includes>
 				
 
