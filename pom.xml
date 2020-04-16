@@ -27,7 +27,7 @@
    		<dependency>
 			<groupId>com.vmlens</groupId>
 			<artifactId>annotation</artifactId>
-			<version>1.0.2</version>
+			<version>1.0.3</version>
 			<scope>test</scope>
 		</dependency>
   
@@ -80,7 +80,7 @@
  	<plugin>
 				<groupId>com.vmlens</groupId>
 				<artifactId>interleave</artifactId>
-				<version>1.0.4</version>
+				<version>1.0.11</version>
 
 				<!-- start regression test -->
 
@@ -88,10 +88,7 @@
 
 					<trimStackTrace>false</trimStackTrace>
 				
-					<includes>
-						<include>com.vmlens.examples.doNotCombine.TestTwoAtomicMethods</include>
-					</includes>
-				
+			
 
 				</configuration>
 				
@@ -103,41 +100,7 @@
 					</execution>
 					
 					
-				 	<execution>
-						<id>concurrentHashMap.TestUpdateWrong</id>
-						<configuration>
-							<includes>
-								<include>com.vmlens.examples.concurrentHashMap.TestUpdateWrong</include>
-							</includes>
-
-						</configuration>
-					</execution>
-					
-					
-					<execution>
-						<id>counter.TestCounterIncorrect</id>
-						<configuration>
-							<includes>
-								<include>com.vmlens.examples.counter.TestCounterIncorrect</include>
-							</includes>
-
-						</configuration>
-					</execution>
-					
-					
-					<execution>
-						<id>counter.TestCounterSynchronized</id>
-						<configuration>
-							<includes>
-								<include>com.vmlens.examples.counter.TestCounterSynchronized</include>
-							</includes>
-
-						</configuration>
-					</execution>
-					
-					
-					
-					
+				
 					
 					
 					

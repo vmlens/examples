@@ -3,19 +3,14 @@ package com.vmlens.examples.concurrentHashMap;
 import static org.junit.Assert.assertEquals;
 
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.TimeUnit;
 
-import org.junit.After;
 import org.junit.Test;
-
-import com.vmlens.annotation.Interleave;
+import com.vmlens.api.AllInterleavings;
 
 public class TestUpdateCorrected {
-	private final ConcurrentHashMap<Integer, Integer> map = new ConcurrentHashMap<Integer, Integer>();
-	@Interleave
-	public void update() {
+	
+	
+	public void update(ConcurrentHashMap<Integer,Integer>  map ) {
 			map.compute(1, (key, value) -> {
 				if (value == null) {
 					return 1;
@@ -24,19 +19,26 @@ public class TestUpdateCorrected {
 			});
 	}
 	@Test
-	public void testUpdate() throws InterruptedException {
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		executor.execute(() -> {  update(); });
-		executor.execute(() -> {  update(); });
-		executor.shutdown();
-		executor.awaitTermination(10, TimeUnit.MINUTES);
-	}
-	@After
-	public void checkResult() {
-		int sum = 0;
-		for (Integer value : map.values()) {
-			sum += value;
+	public void testUpdate() throws InterruptedException	{
+		try (AllInterleavings allInterleavings = 
+				new AllInterleavings("TestUpdateCorrected");) {
+			while (allInterleavings.hasNext()) {
+				
+				final ConcurrentHashMap<Integer,Integer>  map = new  ConcurrentHashMap<Integer,Integer>();
+				
+				
+				
+				Thread first = new Thread(() -> { update(map); 	});
+				Thread second = new Thread(() -> { update(map); 	});
+				first.start();
+				second.start();
+				
+				first.join();
+				second.join();
+
+				assertEquals( 2 , map.get(1).intValue() );
+				
+			}
 		}
-		assertEquals(2, sum);
 	}
 }

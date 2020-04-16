@@ -8,7 +8,8 @@ import java.util.function.BiFunction;
 import org.junit.Test;
 
 public class TestUpdateRecursive {
-	private final ConcurrentHashMap<Integer, Integer> map = new ConcurrentHashMap<Integer, Integer>();
+	private final ConcurrentHashMap<Integer, Integer> map = 
+			new ConcurrentHashMap<Integer, Integer>();
 	public TestUpdateRecursive() {
 		map.put(1, 1);
 		map.put(2, 2);
@@ -27,11 +28,12 @@ public class TestUpdateRecursive {
 	}
 	@Test
 	public void testUpdate() throws InterruptedException	{
-		ExecutorService executor = Executors.newFixedThreadPool(2);
-		executor.execute( () -> { update12();   }  );	
-		executor.execute( () -> { update21();   }  );
-		executor.shutdown();
-		executor.awaitTermination(10, TimeUnit.MINUTES);
+		Thread first = new Thread(() ->  { update12(); 	});
+		Thread second = new Thread(() -> { update21();  	});
+		first.start();
+		second.start();
+		first.join();
+		second.join();
 	}	
 	
 }
