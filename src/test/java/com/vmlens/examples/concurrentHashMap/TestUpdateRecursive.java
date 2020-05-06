@@ -31,8 +31,9 @@ public class TestUpdateRecursive {
 		Thread first = new Thread(() ->  { update12(); 	});
 		Thread second = new Thread(() -> { update21();  	});
 		first.start();
-		second.start();
 		first.join();
+		
+		second.start();
 		second.join();
 	}	
 	

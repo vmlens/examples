@@ -13,7 +13,7 @@
  <pluginRepositories>
   <pluginRepository>
     <id>vmlens</id>
-    <url>http://vmlens.com/download</url>
+    <url>https://vmlens.com/download</url>
   </pluginRepository>
 </pluginRepositories>
 
@@ -27,7 +27,7 @@
    		<dependency>
 			<groupId>com.vmlens</groupId>
 			<artifactId>annotation</artifactId>
-			<version>1.0.3</version>
+			<version>1.0.4</version>
 			<scope>test</scope>
 		</dependency>
   
@@ -80,7 +80,7 @@
  	<plugin>
 				<groupId>com.vmlens</groupId>
 				<artifactId>interleave</artifactId>
-				<version>1.0.11</version>
+				<version>1.0.12</version>
 
 				<!-- start regression test -->
 
